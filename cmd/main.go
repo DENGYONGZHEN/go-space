@@ -36,8 +36,11 @@ func initStorage(db *sql.DB) {
 	err := db.Ping()
 
 	if err != nil {
-		log.Println("DB successfully connected!")
-		log.Printf("Server listening on port: %s", config.Envs.Port)
+		log.Fatal("Failed to connect to database:", err)
 	}
+
+	// 如果 Ping 成功，打印成功连接的信息
+	log.Println("DB successfully connected!")
+	log.Printf("Server listening on port: %s", config.Envs.Port)
 
 }
