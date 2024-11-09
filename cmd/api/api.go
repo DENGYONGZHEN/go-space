@@ -2,6 +2,8 @@ package api
 
 import (
 	"database/sql"
+	"go-api/service/cart"
+	"go-api/service/order"
 	"go-api/service/product"
 	"go-api/service/user"
 	"net/http"
@@ -37,6 +39,11 @@ func (s *APIServer) Run() error {
 	productStore := product.NewStore(s.db)
 	productHandler := product.NewHandler(productStore)
 	productHandler.RegisterRoutes(subrouter)
+
+	//cart routes
+	orderStore := order.NewStore(s.db)
+	cartHandler := cart.NewHandler(orderStore, productStore, userStore)
+	cartHandler.RegisterRoutes(subrouter)
 
 	return http.ListenAndServe(s.addr, router)
 }
