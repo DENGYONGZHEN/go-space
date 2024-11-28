@@ -1,9 +1,12 @@
 package twoSum
 
+import "sort"
+
 //两数之和
 
 // 双指针 有序数组(递增或递减)
 func TwoSum(nums []int, target int) []int {
+	sort.Ints(nums)
 	var left, right = 0, len(nums) - 1
 	for left < right {
 
