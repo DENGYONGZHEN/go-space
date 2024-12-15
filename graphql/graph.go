@@ -1,10 +1,14 @@
 package main
 
-import "github.com/99designs/gqlgen/graphql"
+import (
+	"github.com/99designs/gqlgen/graphql"
+	"github.com/DENGYONGZHEN/go-project-practice/go-GraphQL-gRPC-Microservice/account"
+	"github.com/DENGYONGZHEN/go-project-practice/go-GraphQL-gRPC-Microservice/catalog"
+)
 
 type Server struct {
-	// accountClient *account.Client
-	// catalogClient *catalog.Client
+	accountClient *account.Client
+	catalogClient *catalog.Client
 	// orderClient   *order.Client
 }
 
