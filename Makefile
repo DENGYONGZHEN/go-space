@@ -1,3 +1,5 @@
+DB_URL=postgresql://deng:deng@192.168.193.158:5432/simple_bank?sslmode=disable
+
 postgres:
 	docker run --name simpleBank -e POSTGRES_USER=deng -e POSTGRES_PASSWORD=deng -p 5432:5432 -d postgres:17-alpine
 
@@ -8,10 +10,10 @@ dropdb:
 	docker exec -it simpleBank dropdb -U deng simple_bank
 
 migrateup:
-	migrate -path db/migration -database "postgresql://deng:deng@localhost:5432/simple_bank?sslmode=disable" -verbose up
+	migrate -path db/migration -database "$(DB_URL)" -verbose up
 
 migratedown:
-	migrate -path db/migration -database "postgresql://deng:deng@localhost:5432/simple_bank?sslmode=disable" -verbose down
+	migrate -path db/migration -database "$(DB_URL)" -verbose down
 
 sqlc:
 	sqlc generate
@@ -19,4 +21,7 @@ sqlc:
 test:
 	go test -v -cover ./...
 
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc test
+server:
+	go run main.go
+
+.PHONY: postgres createdb dropdb migrateup migratedown sqlc test server
