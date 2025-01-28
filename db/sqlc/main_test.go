@@ -12,7 +12,8 @@ import (
 var testStore Store
 
 func TestMain(m *testing.M) {
-	dbURL := "postgresql://deng:deng@192.168.193.158:5432/simple_bank?sslmode=disable"
+	// dbURL := "postgresql://deng:deng@192.168.193.158:5432/simple_bank?sslmode=disable"
+	dbURL := "postgresql://deng:deng@localhost:5432/simple_bank?sslmode=disable"
 	pool, err := pgxpool.New(context.Background(), dbURL)
 	if err != nil {
 		log.Fatalf("Unable to connect to database: %v\n", err)
