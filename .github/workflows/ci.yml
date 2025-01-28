@@ -19,7 +19,7 @@ jobs:
         image: postgres:15
         env:
           POSTGRES_USER: deng
-          POSTGRES_PASSWORD: 
+          POSTGRES_PASSWORD: deng
           POSTGRES_DB: simple_bank
         options: >-
           --health-cmd pg_isready
