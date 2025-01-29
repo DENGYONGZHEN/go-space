@@ -104,3 +104,11 @@ $ docker exec -it simpleBank createdb --username=deng --owner=deng simple_bank
 
 
 在wsl上创建的postgres，在wsl上查看ip地址，连接那个ip
+
+```bash
+$ SERVER_ADDRESS=0.0.0.0:8081 make server
+#覆盖配置文件中的变量
+
+
+```bash
+mockgen -package mockdb -destination db/mock/store.go simple-bank/db/sqlc Store

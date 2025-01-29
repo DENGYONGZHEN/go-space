@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"os"
+	"simple-bank/util"
 	"testing"
 
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -12,13 +13,14 @@ import (
 var testStore Store
 
 func TestMain(m *testing.M) {
-	dbURL := "postgresql://deng:deng@192.168.193.158:5432/simple_bank?sslmode=disable"
-	// dbURL := "postgresql://deng:deng@localhost:5432/simple_bank?sslmode=disable"
-	pool, err := pgxpool.New(context.Background(), dbURL)
+	config, err := util.LoadConfig("../..")
+	if err != nil {
+		log.Fatal("cannot load config:", err)
+	}
+	pool, err := pgxpool.New(context.Background(), config.DBSource)
 	if err != nil {
 		log.Fatalf("Unable to connect to database: %v\n", err)
 	}
-	defer pool.Close()
 	testStore = NewStore(pool)
 	os.Exit(m.Run())
 }
