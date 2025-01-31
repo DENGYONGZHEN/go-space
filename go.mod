@@ -4,10 +4,12 @@ go 1.23.5
 
 require (
 	github.com/gin-gonic/gin v1.10.0
+	github.com/go-playground/validator/v10 v10.24.0
 	github.com/jackc/pgx/v5 v5.7.2
 	github.com/spf13/viper v1.19.0
 	github.com/stretchr/testify v1.10.0
 	go.uber.org/mock v0.5.0
+	golang.org/x/crypto v0.32.0
 )
 
 require (
@@ -20,7 +22,6 @@ require (
 	github.com/gin-contrib/sse v1.0.0 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
-	github.com/go-playground/validator/v10 v10.24.0 // indirect
 	github.com/goccy/go-json v0.10.5 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
@@ -49,7 +50,6 @@ require (
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.9.0 // indirect
 	golang.org/x/arch v0.13.0 // indirect
-	golang.org/x/crypto v0.32.0 // indirect
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9 // indirect
 	golang.org/x/net v0.34.0 // indirect
 	golang.org/x/sync v0.10.0 // indirect
