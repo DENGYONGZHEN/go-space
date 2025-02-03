@@ -1,7 +1,7 @@
 DB_URL=postgresql://deng:deng@192.168.193.158:5432/simple_bank?sslmode=disable
 
 postgres:
-	docker run --name simpleBank -e POSTGRES_USER=deng -e POSTGRES_PASSWORD=deng -p 5432:5432 -d postgres:17-alpine
+	docker run --name simpleBank --network bank-network -e POSTGRES_USER=deng -e POSTGRES_PASSWORD=deng -p 5432:5432 -d postgres:17-alpine
 
 createdb:
 	docker exec -it simpleBank createdb --username=deng --owner=deng simple_bank

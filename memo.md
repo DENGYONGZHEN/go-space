@@ -112,3 +112,13 @@ $ SERVER_ADDRESS=0.0.0.0:8081 make server
 
 ```bash
 mockgen -package mockdb -destination db/mock/store.go simple-bank/db/sqlc Store
+
+```bash
+ docker build -t simplebank:latest .
+
+ ```bash
+ docker network create bank-network
+ docker network connect bank-network simpleBank
+ docker network inspect bank-network
+ docker container inspect simpleBank
+ docker run --name simplebank --network bank-network -p 8080:8080 -e GIN_MODE=release -e DB_SOURCE=postgresql://deng:deng@simpleBank:5432/simple_bank?sslmode=disable simplebank:latest
