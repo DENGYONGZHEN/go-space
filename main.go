@@ -4,15 +4,20 @@ import (
 	"context"
 	"log"
 	"net"
+	"net/http"
 	"simple-bank/api"
 	db "simple-bank/db/sqlc"
+	_ "simple-bank/doc/statik"
 	"simple-bank/gapi"
 	"simple-bank/pb"
 	"simple-bank/util"
 
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/rakyll/statik/fs"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
+	"google.golang.org/protobuf/encoding/protojson"
 )
 
 func main() {
@@ -25,6 +30,7 @@ func main() {
 		log.Fatalf("Unable to connect to database: %v\n", err)
 	}
 	testStore := db.NewStore(pool)
+	go runGatewayServer(config, testStore)
 	runGrpcServer(config, testStore)
 }
 
@@ -39,12 +45,57 @@ func runGrpcServer(config util.Config, testStore db.Store) {
 
 	listener, err := net.Listen("tcp", config.GrpcServerAddress)
 	if err != nil {
-		log.Fatal("cannot create listener")
+		log.Fatal("cannot create listener:", err)
 	}
 	log.Printf("start gRPC server at %s", listener.Addr().String())
 	err = grpcServer.Serve(listener)
 	if err != nil {
-		log.Fatal("cannot start gRPC server")
+		log.Fatal("cannot start gRPC server:", err)
+	}
+}
+
+func runGatewayServer(config util.Config, testStore db.Store) {
+	server, err := gapi.NewServer(config, testStore)
+	if err != nil {
+		log.Fatal("cannot create server:", err)
+	}
+	grpcMux := runtime.NewServeMux(runtime.WithMarshalerOption(runtime.MIMEWildcard, &runtime.JSONPb{
+		MarshalOptions: protojson.MarshalOptions{
+			UseProtoNames: true,
+		},
+		UnmarshalOptions: protojson.UnmarshalOptions{
+			DiscardUnknown: true,
+		},
+	}))
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	err = pb.RegisterSimpleBankHandlerServer(ctx, grpcMux, server)
+	if err != nil {
+		log.Fatal("cannot register handler server:", err)
+	}
+
+	mux := http.NewServeMux()
+	mux.Handle("/", grpcMux)
+
+	// fs := http.FileServer(http.Dir("./doc/swagger"))
+	// mux.Handle("/swagger/", http.StripPrefix("/swagger/", fs))
+	statikFS, err := fs.New()
+	if err != nil {
+		log.Fatal("cannot create statik fs:", err)
+	}
+	swaggerHandler := http.StripPrefix("/swagger/", http.FileServer(statikFS))
+	mux.Handle("/swagger/", swaggerHandler)
+
+	listener, err := net.Listen("tcp", config.HTTPServerAddress)
+	if err != nil {
+		log.Fatal("cannot create listener:", err)
+	}
+	log.Printf("start HTTP gateway server at %s", listener.Addr().String())
+	err = http.Serve(listener, mux)
+	if err != nil {
+		log.Fatal("cannot start HTTP gateway server:", err)
 	}
 }
 

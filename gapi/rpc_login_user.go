@@ -41,15 +41,15 @@ func (server *Server) LoginUser(ctx context.Context, req *pb.LoginUserRequest) (
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "scan uuid err: %s", err)
 	}
+
+	medt := server.extractMetadata(ctx)
 	session, err := server.store.CreateSession(ctx, db.CreateSessionParams{
 		ID:           pgUUID,
 		Username:     refreshPayload.Username,
 		RefreshToken: refreshToken,
-		// UserAgent:    ctx.Request.UserAgent(),
-		// ClientIp:     ctx.ClientIP(),
-		UserAgent: "",
-		ClientIp:  "",
-		IsBlocked: false,
+		UserAgent:    medt.UserAgent,
+		ClientIp:     medt.ClientIP,
+		IsBlocked:    false,
 		ExpiresAt: pgtype.Timestamptz{
 			Time:  refreshPayload.ExpiresAt.Time,
 			Valid: true,
