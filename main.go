@@ -29,9 +29,17 @@ func main() {
 	if err != nil {
 		log.Fatalf("Unable to connect to database: %v\n", err)
 	}
+
+	//run db migration
+	runDBMigration(config.MigrationURL, config.DBSource)
+
 	testStore := db.NewStore(pool)
 	go runGatewayServer(config, testStore)
 	runGrpcServer(config, testStore)
+}
+
+func runDBMigration(migrationURL string, dbSource string) {
+
 }
 
 func runGrpcServer(config util.Config, testStore db.Store) {
