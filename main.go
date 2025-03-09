@@ -12,6 +12,9 @@ import (
 	"simple-bank/pb"
 	"simple-bank/util"
 
+	"github.com/golang-migrate/migrate/v4"
+	_ "github.com/golang-migrate/migrate/v4/database/postgres"
+	_ "github.com/golang-migrate/migrate/v4/source/file"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/rakyll/statik/fs"
@@ -39,6 +42,16 @@ func main() {
 }
 
 func runDBMigration(migrationURL string, dbSource string) {
+
+	m, err := migrate.New(migrationURL, dbSource)
+	if err != nil {
+		log.Fatal("can not create new migrate instance", err)
+	}
+	if err := m.Up(); err != nil && err != migrate.ErrNoChange {
+		log.Fatal("failed to run migrate up:", err)
+	}
+
+	log.Println("db migrated successfully")
 
 }
 
