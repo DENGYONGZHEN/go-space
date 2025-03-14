@@ -3,9 +3,7 @@ package worker
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
-	db "simple-bank/db/sqlc"
 
 	"github.com/hibiken/asynq"
 	"github.com/rs/zerolog/log"
@@ -54,9 +52,9 @@ func (rtp *RedisTaskProcessor) ProcessTaskSendVerifyEmail(ctx context.Context, t
 
 	user, err := rtp.store.GetUser(ctx, payload.Username)
 	if err != nil {
-		if errors.Is(err, db.ErrRecordNotFound) {
-			return fmt.Errorf("user doesn't exist: %w", asynq.SkipRetry)
-		}
+		// if errors.Is(err, db.ErrRecordNotFound) {
+		// 	return fmt.Errorf("user doesn't exist: %w", asynq.SkipRetry)
+		// }
 
 		return fmt.Errorf("failed to get user: %w", err)
 	}
