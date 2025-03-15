@@ -9,15 +9,18 @@ import (
 // Config stores all configuration of the application
 // The value are read by viper from a config file or environment variables.
 type Config struct {
-	Environment          string        `mapstructure:"ENVIRONMENT"`
-	DBSource             string        `mapstructure:"DB_SOURCE"`
-	HTTPServerAddress    string        `mapstructure:"HTTP_SERVER_ADDRESS"`
-	GrpcServerAddress    string        `mapstructure:"GRPC_SERVER_ADDRESS"`
-	TokenSymmetricKey    string        `mapstructure:"TOKEN_SYMMETRIC_KEY"`
-	AccessTokenDuration  time.Duration `mapstructure:"ACCESS_TOKEN_DURATION"`
-	RefreshTokenDuration time.Duration `mapstructure:"REFRESH_TOKEN_DURATION"`
-	MigrationURL         string        `mapstructure:"MIGRATION_URL"`
-	RedisAddress         string        `mapstructure:"REDIS_ADDRESS"`
+	Environment              string        `mapstructure:"ENVIRONMENT"`
+	DBSource                 string        `mapstructure:"DB_SOURCE"`
+	HTTPServerAddress        string        `mapstructure:"HTTP_SERVER_ADDRESS"`
+	GrpcServerAddress        string        `mapstructure:"GRPC_SERVER_ADDRESS"`
+	TokenSymmetricKey        string        `mapstructure:"TOKEN_SYMMETRIC_KEY"`
+	AccessTokenDuration      time.Duration `mapstructure:"ACCESS_TOKEN_DURATION"`
+	RefreshTokenDuration     time.Duration `mapstructure:"REFRESH_TOKEN_DURATION"`
+	MigrationURL             string        `mapstructure:"MIGRATION_URL"`
+	RedisAddress             string        `mapstructure:"REDIS_ADDRESS"`
+	EmailSenderName          string        `mapstructure:"EMAIL_SENDER_NAME"`
+	EmailSenderAddress       string        `mapstructure:"EMAIL_SENDER_ADDRESS"`
+	EMAILEmailSenderPassword string        `mapstructure:"EMAIL_SENDER_PASSWORD"`
 }
 
 // LoadConfig reads configuration from file or environment varibales.

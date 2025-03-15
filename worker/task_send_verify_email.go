@@ -4,6 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	db "simple-bank/db/sqlc"
+	"simple-bank/util"
 
 	"github.com/hibiken/asynq"
 	"github.com/rs/zerolog/log"
@@ -59,7 +61,28 @@ func (rtp *RedisTaskProcessor) ProcessTaskSendVerifyEmail(ctx context.Context, t
 		return fmt.Errorf("failed to get user: %w", err)
 	}
 
-	//TODO：send email to user
+	//send email to user
+
+	verifyEmail, err := rtp.store.CreateVerifyEmail(ctx, db.CreateVerifyEmailParams{
+		Username:   user.Username,
+		Email:      user.Email,
+		SecretCode: util.RandomString(32),
+	})
+
+	if err != nil {
+		return fmt.Errorf("failed to create verify email: %w", err)
+	}
+	subject := "welcome to simple bank"
+	content := `
+	<h1>hello world</h1>
+	<p>This is a test message from <a href="http://zfefef.com"> gdsgfd</a></p>
+	`
+	to := []string{verifyEmail.Email}
+	err = rtp.mailer.SendEmail(subject, content, to, nil, nil, nil)
+	if err != nil {
+		return fmt.Errorf("failed to send verify email: %w", err)
+	}
+
 	log.Info().
 		Str("type", task.Type()).
 		Bytes("payload", task.Payload()).
