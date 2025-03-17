@@ -1,4 +1,4 @@
-package threeSumZero
+package array
 
 import (
 	"sort"

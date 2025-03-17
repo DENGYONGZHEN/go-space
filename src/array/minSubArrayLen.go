@@ -1,4 +1,4 @@
-package main
+package array
 
 //209. Minimum Size Subarray Sum
 

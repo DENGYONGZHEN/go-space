@@ -1,6 +1,6 @@
-package main
+package array
 
-//乘积小于K的子数组
+// 乘积小于K的子数组
 func numSubarrayProductLessThanK(nums []int, k int) int {
 
 	product := 1

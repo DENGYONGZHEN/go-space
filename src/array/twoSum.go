@@ -1,4 +1,4 @@
-package twoSum
+package array
 
 import "sort"
 
