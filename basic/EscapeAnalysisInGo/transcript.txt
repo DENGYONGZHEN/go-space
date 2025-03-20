@@ -1,0 +1,74 @@
+WORK=/tmp/go-build3089791977
+mkdir -p $WORK/b001/
+cat >/tmp/go-build3089791977/b001/importcfg << 'EOF' # internal
+# import config
+packagefile fmt=/home/deng/.cache/go-build/8c/8cbbceaccba55322c01d0f321d8247ea41b9da918fd4e05922c093ce3fa7dc11-d
+packagefile runtime=/home/deng/.cache/go-build/e4/e401fdf2e421a18e1a36cf859b820295b4dc4fee18e5d532b79124ad43576602-d
+EOF
+cd /home/deng/Projects/Go/advancedGolang/basic/EscapeAnalysisInGo
+/usr/local/go/pkg/tool/linux_amd64/compile -o $WORK/b001/_pkg_.a -trimpath "$WORK/b001=>" -p main -lang=go1.24 -complete -buildid xZ_BePvs8XQYw9Or1H-S/xZ_BePvs8XQYw9Or1H-S -goversion go1.24.1 -c=4 -nolocalimports -importcfg $WORK/b001/importcfg -pack ./main.go
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b001/_pkg_.a # internal
+cp $WORK/b001/_pkg_.a /home/deng/.cache/go-build/65/65cfdad83e9dc98b66e42366fc849ef8193474d7d9920f7278f6d813986ffa35-d # internal
+cat >/tmp/go-build3089791977/b001/importcfg.link << 'EOF' # internal
+packagefile command-line-arguments=/tmp/go-build3089791977/b001/_pkg_.a
+packagefile fmt=/home/deng/.cache/go-build/8c/8cbbceaccba55322c01d0f321d8247ea41b9da918fd4e05922c093ce3fa7dc11-d
+packagefile runtime=/home/deng/.cache/go-build/e4/e401fdf2e421a18e1a36cf859b820295b4dc4fee18e5d532b79124ad43576602-d
+packagefile errors=/home/deng/.cache/go-build/a1/a1040549337fd3a670290b558f25bab4865c29ccd8e315d76151fbecd869e108-d
+packagefile internal/fmtsort=/home/deng/.cache/go-build/da/da311922e3104661bbc43a6fcd1db44d1ba0d7fbfdf15ad9445dbfb0e25b909f-d
+packagefile io=/home/deng/.cache/go-build/04/04967a76c176aca1fa947a15b633ea00174f5ac9e954485affced05be538ab40-d
+packagefile math=/home/deng/.cache/go-build/6e/6e0c1daa39ba8abfa7150cda2b4cd3871e6a6fa411d3f0cac2e1b2b172b2ba63-d
+packagefile os=/home/deng/.cache/go-build/fe/fe6dbd6432abef177c604b99c9b1acd2be9ef0a7aa8d2de8c843344bc4e6b6fb-d
+packagefile reflect=/home/deng/.cache/go-build/ac/ac00007a58e63e1166a3e9427c3716a9e8474deb7c1e1638a44fca9676c6f1b3-d
+packagefile slices=/home/deng/.cache/go-build/41/41b1b7f3830da0af73f0df99836a0490488794bab27a5afef86a3de32b00fb7c-d
+packagefile strconv=/home/deng/.cache/go-build/ac/ac3502015b54d109c551489d3c39623e4a30abae4330b7bd84eb2a87278af662-d
+packagefile sync=/home/deng/.cache/go-build/fd/fd4f432b423b3e7a25e7defb6da89dbaa082346a967cd957b6fc9cab7a5a873a-d
+packagefile unicode/utf8=/home/deng/.cache/go-build/76/76f7904be92215317a9bcb23794098ddd053c35b22600d3f39fae1932207daeb-d
+packagefile internal/abi=/home/deng/.cache/go-build/26/26cace4eb3379c86f6c769679b9285bb60e73d67f46bc7ed532b2819b58d28a1-d
+packagefile internal/bytealg=/home/deng/.cache/go-build/a4/a4ac91b6cb8f2ae5b817c611c2d5c7eaa19b4f58001f1f9aa6e0df96b027b59b-d
+packagefile internal/byteorder=/home/deng/.cache/go-build/13/137294269158f4f4d050482c82624bf6b9b6d02cb5a6eaa4c350d23cd10edd20-d
+packagefile internal/chacha8rand=/home/deng/.cache/go-build/ca/ca5b7ed8b11ce75fcc5bf9b7b3fe2271321b682b7f40fe1b69cce5f5085dda62-d
+packagefile internal/coverage/rtcov=/home/deng/.cache/go-build/2f/2ff4720f0c31357a9a4bb941b6d21ffcf7f38cb9f9f372c7c95b1d70c3b9687b-d
+packagefile internal/cpu=/home/deng/.cache/go-build/b2/b2b183acc8d6c4165c960c5e133dafd3eb86f393c244d047ae2ee79e20d79b7a-d
+packagefile internal/goarch=/home/deng/.cache/go-build/02/025e73ff6c878bbcc7cc3dce727eb75ec5753009c6c82efdcc2bb81210d4e44f-d
+packagefile internal/godebugs=/home/deng/.cache/go-build/ab/abc938d3a6a33bdd5b7cacca6561867902285d065777d05c091e9f1a46b83291-d
+packagefile internal/goexperiment=/home/deng/.cache/go-build/03/03ea3d90bde3a9d7403d0daa8ebf25091722eec117ae5fe10ce9607aefbe36a1-d
+packagefile internal/goos=/home/deng/.cache/go-build/6a/6a6fdfd1249752ee4a8580a61c394d49543aa7dc160fa5dc3d7dfbd3c038ff69-d
+packagefile internal/profilerecord=/home/deng/.cache/go-build/d9/d923aae8dc1306a08e2f77b44d06baed859ef5c84d871bf28fb9567b29f5f51a-d
+packagefile internal/runtime/atomic=/home/deng/.cache/go-build/86/866b217f013f8795e53c8dc4516d15c137c7b9ea9ae67f6bbee75dbe05675e49-d
+packagefile internal/runtime/exithook=/home/deng/.cache/go-build/5b/5b1a5583e4af91b0ce59ae16f20d3c794f1347aa3018092223ca2c7bb5a987be-d
+packagefile internal/runtime/maps=/home/deng/.cache/go-build/fc/fc564cc2950b3c23bc82296a13176c7d07b1c604c1ed9400258a881c692628ab-d
+packagefile internal/runtime/math=/home/deng/.cache/go-build/33/339de7169db9aa76cb736bd5503366ddec93a1838dc010a5eac154541ca2180b-d
+packagefile internal/runtime/sys=/home/deng/.cache/go-build/35/35a8c2fcec492fbca11d912d615f5100697d5ec1e73a2bbbdbe27feb0a27a97b-d
+packagefile internal/runtime/syscall=/home/deng/.cache/go-build/bf/bf5ff7b34ec89220a43f7bec5b725e34bbaa4143a3c905666b4eea43cc0aed42-d
+packagefile internal/stringslite=/home/deng/.cache/go-build/ec/ec7f4927c6c5a7eed9593477d9e96a7264388a9ba49e1854a4cc075498a1df9a-d
+packagefile internal/reflectlite=/home/deng/.cache/go-build/62/626d7487e537db2b19beaaedb5d24271e81564fb5610f3835ca2c008d8e177d8-d
+packagefile cmp=/home/deng/.cache/go-build/db/db4adab7db7fcb81a156c4f31ba1918960fc3baa98d64f5e0b521530ca956a0a-d
+packagefile math/bits=/home/deng/.cache/go-build/18/188930de0cab114f56a5da57957ec2007391340a326702ebf320a6f444eeff3d-d
+packagefile internal/filepathlite=/home/deng/.cache/go-build/e7/e75a86916a435c9f602c844e50f4004f5fd5173d8ae3e49509775206a5938801-d
+packagefile internal/itoa=/home/deng/.cache/go-build/1b/1b1f3cbb5619ed51f7279b6c3e30cf0401028b7e6782672987e61468b916664d-d
+packagefile internal/poll=/home/deng/.cache/go-build/8a/8a852f657b8af0a4002589333efb9a0b4c97a442d2ea6e3a36bf3dceb1f9841d-d
+packagefile internal/syscall/execenv=/home/deng/.cache/go-build/96/9626b5d790bb6b5cbb1fec2a89bfa685396ba09980de0c44b8060786aa5568b9-d
+packagefile internal/syscall/unix=/home/deng/.cache/go-build/11/1119bcb096edb5c5557301fcd326ba7282cbd1a2e1b4870bf6defb739eecb310-d
+packagefile internal/testlog=/home/deng/.cache/go-build/37/376673861aed53a1f700e3ae34b41152b4f0e90f9b07c6d92aacae369d9cf77e-d
+packagefile io/fs=/home/deng/.cache/go-build/07/0700fb1b6eb0294d5a71ce6a5cc2b04379d17946c5ee19f1987e318ac92ce1cd-d
+packagefile sync/atomic=/home/deng/.cache/go-build/6f/6f9d008ddc8ede455b84fedcd2be98333ecba08248d50aeb3252e6915183256c-d
+packagefile syscall=/home/deng/.cache/go-build/44/44364babcf9d733a12f8156cf39883134c7dbc257068d29024d02225773c18c2-d
+packagefile time=/home/deng/.cache/go-build/b6/b6be2df26aa768fdd1e3f283328d32f118cc0dc43038ad154f0e57c5c96f4195-d
+packagefile internal/race=/home/deng/.cache/go-build/a7/a76506724229ce3c887e61e773e34c30736c995a90262403c10e1119fb5872ec-d
+packagefile internal/unsafeheader=/home/deng/.cache/go-build/d5/d577fbff98ba22d2e32f24620ee6cd9bd3970d7cb65b36d917fe84c07c1e79b0-d
+packagefile iter=/home/deng/.cache/go-build/f6/f665bbf7748602732a2e3a89efea072a0ff58000107c1277d0f79ad2ef1187df-d
+packagefile unicode=/home/deng/.cache/go-build/e0/e0a71ec4af01eea46a933b6e1d3da867ea6b2d36370d4e31c02516d88e7fc6ed-d
+packagefile internal/sync=/home/deng/.cache/go-build/f7/f7e1059b6a624ffa8e725b3365356cf70ef76a2a81f398a8d80aec214f7d9358-d
+packagefile internal/asan=/home/deng/.cache/go-build/e5/e5505c4a420dbaae54bfcc5218196e4b5fb44f6322494d96170cadc891d13d96-d
+packagefile internal/msan=/home/deng/.cache/go-build/62/62b6f7e247054a8827679b4707076da0de65a80ef7df004026ec30118242f595-d
+packagefile internal/oserror=/home/deng/.cache/go-build/cf/cf10219d5594563f1f380685b482a7f033a10aabc5383001cd6c223ed04045d1-d
+packagefile path=/home/deng/.cache/go-build/5f/5f093f1c6a3a01dba38dc7449bc5f40b5d2b148deb001fd364f2cb8515fd2df0-d
+packagefile internal/godebug=/home/deng/.cache/go-build/0d/0d0a8bba5c7866a08229f28a14b9fc46a12d4108111590038a41928f446dabef-d
+packagefile internal/bisect=/home/deng/.cache/go-build/c8/c858e4655bb706dca3ac274a16c3cfcddd0efcb852274f2657519d7b171e55e6-d
+modinfo "0w\xaf\f\x92t\b\x02A\xe1\xc1\a\xe6\xd6\x18\xe6path\tcommand-line-arguments\nbuild\t-buildmode=exe\nbuild\t-compiler=gc\nbuild\tCGO_ENABLED=0\nbuild\tGOARCH=amd64\nbuild\tGOOS=linux\nbuild\tGOAMD64=v1\n\xf92C1\x86\x18 r\x00\x82B\x10A\x16\xd8\xf2"
+EOF
+mkdir -p $WORK/b001/exe/
+cd .
+GOROOT='/usr/local/go' /usr/local/go/pkg/tool/linux_amd64/link -o $WORK/b001/exe/a.out -importcfg $WORK/b001/importcfg.link -buildmode=exe -buildid=M1bMcQfakGE7HYUgx1Z4/xZ_BePvs8XQYw9Or1H-S/o7Bt4XNRq_O6hMN3UTdc/M1bMcQfakGE7HYUgx1Z4 -extld=gcc $WORK/b001/_pkg_.a
+/usr/local/go/pkg/tool/linux_amd64/buildid -w $WORK/b001/exe/a.out # internal
+mv $WORK/b001/exe/a.out main
