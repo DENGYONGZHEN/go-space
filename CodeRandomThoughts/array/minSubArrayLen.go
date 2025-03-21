@@ -7,7 +7,7 @@ package array
 func MinSubArrayLen(target int, nums []int) int {
 	n := len(nums)
 	minLength := n + 1 // 初始化为比数组长度大的值
-	sum := 0           // 当前窗口的总和
+	sum := 0           // 当前窗口的值总和
 	left := 0          // 滑动窗口的左边界
 
 	for right := 0; right < n; right++ {
