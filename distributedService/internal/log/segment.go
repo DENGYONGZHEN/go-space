@@ -43,3 +43,5 @@ func newSegment(dir string, baseOffset uint64, c Config) (*segment, error) {
 	return s, nil
 
 }
+
+// func (s *segment) Append(record *api.Record)
