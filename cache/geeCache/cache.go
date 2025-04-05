@@ -3,7 +3,7 @@ package geecache
 import (
 	"sync"
 
-	"github.com/deng/go-space/little-practice/geecache/geeCache/lru"
+	"github.com/deng/go-space/little-practice/geecache/lru"
 )
 
 type cache struct {
