@@ -9,6 +9,7 @@
                 <a id="brokerBtn" class="btn btn-outline-secondary" href="javascript:void(0);">Test Broker</a>
                 <a id="authBrokerBtn" class="btn btn-outline-secondary" href="javascript:void(0);">Test Auth</a>
                 <a id="logBtn" class="btn btn-outline-secondary" href="javascript:void(0);">Test log</a>
+                <a id="mailBtn" class="btn btn-outline-secondary" href="javascript:void(0);">Test Mail</a>
 
                 <div id="output" class="mt-5" style="outline: 1px solid silver; padding: 2em;">
                     <span class="text-muted">Output shows here...</span>
@@ -37,8 +38,9 @@
     let brokerBtn = document.getElementById("brokerBtn");
     let authBrokerBtn = document.getElementById("authBrokerBtn");
     let logBtn = document.getElementById("logBtn");
+    let mailBtn = document.getElementById("mailBtn");
     let output = document.getElementById("output");
-    let payload = document.getElementById("payload");
+    let sent = document.getElementById("payload");
     let received = document.getElementById("received");
 
     brokerBtn.addEventListener("click",function() {
@@ -48,7 +50,7 @@
         fetch("http:\/\/192.168.193.158:8080",body)
         .then((response)=>response.json())
         .then((data)=>{
-            payload.innerHTML = "empty post request";
+            sent.innerHTML = "empty post request";
             received.innerHTML = JSON.stringify(data,undefined,4);
             if(data.error){
                 console.log(data.message);
@@ -80,7 +82,7 @@
         fetch("http:\/\/192.168.193.158:8080/handle",body)
         .then((response)=>response.json())
         .then((data)=>{
-            payload.innerHTML = JSON.stringify(payload,undefined,4);
+            sent.innerHTML = JSON.stringify(payload,undefined,4);
             received.innerHTML = JSON.stringify(data,undefined,4);
             if(data.error){
                 output.innerHTML += `<br><strong>Error:</strong>${data.message}`;
@@ -112,7 +114,7 @@
         fetch("http:\/\/192.168.193.158:8080/handle",body)
         .then((response)=>response.json())
         .then((data)=>{
-            payload.innerHTML = JSON.stringify(payload,undefined,4);
+            sent.innerHTML = JSON.stringify(payload,undefined,4);
             received.innerHTML = JSON.stringify(data,undefined,4);
             if(data.error){
                 output.innerHTML += `<br><strong>Error:</strong>${data.message}`;
@@ -125,6 +127,41 @@
         })
     })
 
+
+    mailBtn.addEventListener("click",function() {
+       
+        const payload = {
+            action:"mail",
+            mail:{
+                from:"me@example.com",
+                to:"you@example.com",
+                subject:"Test email",
+                message:"Hello world!",
+            }
+       }
+       const headers = new Headers();
+       headers.append("Content-Type","application/json");
+       
+        const body = {
+            method: "POST",
+            body: JSON.stringify(payload),
+            headers:headers,
+        }
+        fetch("http:\/\/192.168.193.158:8080/handle",body)
+        .then((response)=>response.json())
+        .then((data)=>{
+            sent.innerHTML = JSON.stringify(payload,undefined,4);
+            received.innerHTML = JSON.stringify(data,undefined,4);
+            if(data.error){
+                output.innerHTML += `<br><strong>Error:</strong>${data.message}`;
+            }else{
+                output.innerHTML += `<br><strong>Response from broker service</strong>: ${data.message}`;
+            }
+        })
+        .catch((error)=>{
+           output.innerHTML += "<br><br>Error: "  + error;
+        })
+    })
         
     </script>
 {{end}}
