@@ -1,4 +1,4 @@
-package chapter6
+package tftp
 
 import (
 	"bytes"

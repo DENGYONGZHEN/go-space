@@ -1,26 +1,31 @@
 package main
 
 import (
+	"crypto/sha512"
 	"flag"
-	"log"
+	"fmt"
 	"os"
-
-	"github.com/deng/go-space/networkProgrammingWithGo/chapter6"
 )
 
-var (
-	address = flag.String("a", "127.0.0.1:69", "listen address")
-	payload = flag.String("p", "payload.svg", "file to serve to client")
-)
+func init() {
+	flag.Usage = func() {
+		fmt.Printf("Usage: %s file..\n", os.Args[0])
+		flag.PrintDefaults()
+	}
+}
 
 func main() {
 	flag.Parse()
+	for _, file := range flag.Args() {
+		fmt.Printf("%s %s\n", checksum(file), file)
+	}
+}
 
-	p, err := os.ReadFile(*payload)
+func checksum(file string) string {
+	b, err := os.ReadFile(file)
 	if err != nil {
-		log.Fatal(err)
+		return err.Error()
 	}
 
-	s := chapter6.Server{Payload: p}
-	log.Fatal(s.ListenAndServe(*address))
+	return fmt.Sprintf("%x", sha512.Sum512_256(b))
 }

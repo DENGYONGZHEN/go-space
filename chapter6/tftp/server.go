@@ -1,4 +1,4 @@
-package chapter6
+package tftp
 
 import (
 	"bytes"
@@ -50,12 +50,13 @@ func (s *Server) Serve(conn net.PacketConn) error {
 			return err
 		}
 		err = rrq.UnmarshalBinary(buf)
+
 		if err != nil {
 
 			log.Printf("[%s] bad request: %v", addr, err)
 			continue
 		}
-
+		log.Printf("[%s] rrq : %v", addr, rrq)
 		go s.handle(addr.String(), rrq)
 
 	}
