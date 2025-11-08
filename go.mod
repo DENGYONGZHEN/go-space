@@ -3,6 +3,7 @@ module github.com/deng/go-space/networkProgrammingWithGo
 go 1.24.1
 
 require (
+	github.com/aws/aws-lambda-go v1.50.0
 	github.com/go-kit/kit v0.13.0
 	github.com/prometheus/client_golang v1.23.2
 	go.uber.org/multierr v1.11.0
