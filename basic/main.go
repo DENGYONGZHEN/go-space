@@ -6,7 +6,7 @@ import (
 )
 
 func printSomething(s string, wg *sync.WaitGroup) {
-	//🎈 third step
+	// third step
 	defer wg.Done()
 	fmt.Println(s)
 }
@@ -25,16 +25,16 @@ func main() {
 		"theta",
 		"epsilon",
 	}
-	//🎈 first step
+	// first step
 	wg.Add(len(words))
 	for i, x := range words {
 		go printSomething(fmt.Sprintf("%d: %s", i, x), &wg)
 	}
 
-	//🎈 second step,wait count to be 0
+	// second step,wait count to be 0
 	wg.Wait()
 
-	////🎈 third step
+	// third step
 	wg.Add(1)
 	printSomething("This is the second thing to be printed!", &wg)
 }
