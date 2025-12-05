@@ -63,3 +63,30 @@ func collectListNodeValue(head *ListNode) []int {
 	}
 	return result
 }
+
+func makeLinkedListWithCycle(input []int, pos int) *ListNode {
+
+	if len(input) <= 0 {
+		return nil
+	}
+
+	head := &ListNode{Val: input[0]}
+	current := head
+
+	//记住环的入口位置，最后的节点的下一个节点指向这个，pos是0开始的数组索引
+	var cycleEntry *ListNode
+	if pos == 0 {
+		cycleEntry = head
+	}
+
+	for i := 1; i < len(input); i++ {
+		current.Next = &ListNode{Val: input[i]}
+		if i == pos {
+			cycleEntry = current.Next
+		}
+		current = current.Next
+	}
+
+	current.Next = cycleEntry
+	return head
+}
