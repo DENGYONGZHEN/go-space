@@ -39,7 +39,13 @@ package binarytree
 // }
 
 func inorderTraversal(root *TreeNode) []int {
-	var result []int
+
+	//注意 使用 var re1 []int  和 re2 := []int{}， re1不等于re2，re1
+	// re1 == nil → true
+	// re2 == nil → false
+	// len(re1) = 0
+	// len(re2) = 0
+	result := []int{}
 	travers(root, &result)
 	return result
 }
