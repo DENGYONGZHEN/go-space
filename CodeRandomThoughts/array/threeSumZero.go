@@ -22,9 +22,13 @@ func threeSum(nums []int) [][]int {
 			sum := nums[i] + nums[left] + nums[right]
 			if sum == 0 {
 				result = append(result, []int{nums[i], nums[left], nums[right]})
-				skipLeft := nums[left]
-				for left < right && skipLeft == nums[left] {
+				// 去重 left 和 right
+				leftVal, rightVal := nums[left], nums[right]
+				for left < right && nums[left] == leftVal {
 					left++
+				}
+				for left < right && nums[right] == rightVal {
+					right--
 				}
 			} else if sum > 0 {
 				right--
