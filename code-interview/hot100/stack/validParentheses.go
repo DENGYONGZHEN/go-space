@@ -25,5 +25,4 @@ func isValid(s string) bool {
 		}
 	}
 	return pointer == -1
-
 }
