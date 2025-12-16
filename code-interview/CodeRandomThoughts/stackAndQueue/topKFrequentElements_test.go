@@ -1,0 +1,51 @@
+package stackandqueue
+
+import (
+	"reflect"
+	"testing"
+)
+
+// Example 1:
+// Input: nums = [1,1,1,2,2,3], k = 2
+// Output: [1,2]
+
+// Example 2:
+// Input: nums = [1], k = 1
+// Output: [1]
+
+// Example 3:
+// Input: nums = [1,2,1,2,1,2,3,1,3,2], k = 2
+// Output: [1,2]
+
+func TestTopKFrequent(t *testing.T) {
+
+	testCase := []struct {
+		input []int
+		k     int
+		want  []int
+	}{
+		{
+			input: []int{1, 1, 1, 2, 2, 3},
+			k:     2,
+			want:  []int{1, 2},
+		},
+		{
+			input: []int{1},
+			k:     1,
+			want:  []int{1},
+		},
+		{
+			input: []int{1, 2, 1, 2, 1, 2, 3, 1, 3, 2},
+			k:     2,
+			want:  []int{1, 2},
+		},
+	}
+
+	for _, tc := range testCase {
+		got := topKFrequent(tc.input, tc.k)
+
+		if !reflect.DeepEqual(got, tc.want) {
+			t.Fatalf("TestTopKFrequent want %v, instead %v", tc.want, got)
+		}
+	}
+}
